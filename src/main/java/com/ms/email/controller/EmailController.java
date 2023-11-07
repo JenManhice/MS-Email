@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EmailController {
     @Autowired
-    EmailService emailService;
+    private EmailService emailService;
 
     @PostMapping("/sending-email")
     public ResponseEntity<Email> sendingEmail(@RequestBody @Valid EmailDTO emailDTO) {
         Email email = new Email();
-        BeanUtils.copyProperties(EmailDTO, email);
+        BeanUtils.copyProperties(emailDTO, email);
         emailService.sendEmail(email);
         return new ResponseEntity<>(email, HttpStatus.CREATED);
 
