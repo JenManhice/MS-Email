@@ -29,12 +29,16 @@ public class EmailService {
             message.setSubject(email.getSubject());
             message.setText(email.getText());
             emailSender.send(message);
-
+            System.out.println("sending");
             email.setStatusEmail(StatusEmail.SENT);
+            System.out.println(email.getStatusEmail());
         }catch (MailException e ) {
             email.setStatusEmail(StatusEmail.ERROR);
+            System.out.println(email.getStatusEmail());
         } finally {
+            System.out.println("finally");
                     return emailRepo.save(email);
+
             }
             }
 
